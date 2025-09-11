@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode"; // ✅ Correct import for jwt-decode
 
 // Initial state
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
   email: "",
   avatar: null,
   token: "",
-  isLoggedIn: false
+  isLoggedIn: false,
 };
 
 // Slice definition
@@ -22,20 +22,22 @@ export const userSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = action.payload.isLoggedIn;
     },
+    // Renamed logout to removeUser for consistency with PrivateRoute.jsx
     removeUser: () => ({
       name: "",
       email: "",
       avatar: null,
       token: "",
-      isLoggedIn: false
-    })
-  }
+      isLoggedIn: false,
+    }),
+  },
 });
 
-// Actions
+// ✅ Actions
 export const { setUser, removeUser } = userSlice.actions;
 
-// Selectors
+// ✅ Selectors
+export const getUser = (state) => state.user;
 export const getUserAvatar = (state) => state.user.avatar;
 export const getName = (state) => state.user.name;
 export const getToken = (state) => state.user.token;
@@ -46,7 +48,6 @@ export const getRole = (state) => {
   }
   return "";
 };
-
 export const getIsLoggedIn = (state) => state.user.isLoggedIn;
 
 export default userSlice.reducer;

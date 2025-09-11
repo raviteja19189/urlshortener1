@@ -6,10 +6,11 @@ function joinURL(baseURL, url) {
 
 class Service {
   constructor() {
-    this.domain = "";
+    let domain = "";
     if (import.meta.env.VITE_BZENV === "development") {
-      this.domain = import.meta.env.VITE_DEV_PROXY;
+      domain = import.meta.env.VITE_DEV_PROXY;
     }
+    this.domain = domain;
   }
 
   async request(url, method = "POST", data) {
